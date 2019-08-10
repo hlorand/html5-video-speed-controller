@@ -8,6 +8,8 @@ Usage:
 - Speed up: `a`, `s`, `d`, `A`, `S`, `D` keys
 - Slow down: `q`, `w`, `e` keys
 
+With this bookmarklet, you can control videos on YouTube, Vimeo, Netflix and every other sites that use HTML5 video. It works in every popular browser like Chrome, Firefox or Safari!
+
 ![screenshot](screenshot.png)
 
 Installation
