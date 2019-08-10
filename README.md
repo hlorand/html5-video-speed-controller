@@ -17,7 +17,7 @@ Installation
 	- Chrome: `Ctrl + Shift + B`
 	- Firefox: [How to show bookmarks toolbar](https://support.mozilla.org/en-US/kb/bookmarks-toolbar-display-favorite-websites) 
 	- Safari: `View menu > Show favorites bar`
-2. **[Open this page](hlorand.github.io/video-speed-controller/) and drag and drop the link into the bookmarks bar.**
+2. **[Open this page](https://hlorand.github.io/html5-video-speed-controller/) and drag and drop the link into the bookmarks bar.**
 
 ![install.gif](install.gif)
 
