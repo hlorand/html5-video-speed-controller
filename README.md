@@ -3,10 +3,11 @@ Video Speed Controller Bookmarklet
 
 Control HTML5 video speed with your keyboard.
 
-Usage:
+Usage: ASD
 
-- Speed up: `a`, `s`, `d`, `A`, `S`, `D` keys
-- Slow down: `q`, `w`, `e` keys
+- Reset speed: `a`
+- Slow down: `s`
+- Speed up: `d`
 
 With this bookmarklet, you can control videos on YouTube, Vimeo, Netflix and every other sites that use HTML5 video. It works in every popular browser like Chrome, Firefox or Safari!
 

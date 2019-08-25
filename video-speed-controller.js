@@ -23,22 +23,26 @@ function addEvent(element, eventName, callback) {
 	}
 }
 
+function clamp(num, min, max) {
+	return num <= min ? min : num >= max ? max : num;
+}
+
 addEvent(document, "keypress", function (e) {
 
 	e = e || window.event;
 
-	//speed up keys
+	//keys
 	if(e.key == 'a') speed = 1;
-	if(e.key == 's') speed = 1.25;
-	if(e.key == 'd') speed = 1.5;
-	if(e.key == 'A') speed = 1.75;
-	if(e.key == 'S') speed = 2;
-	if(e.key == 'D') speed = 2.25;
+	if(e.key == 's') {
+		speed = speed <= 0.25 ? 0.05 : speed - 0.25;
+	}
+	if(e.key == 'd'){
+		if(speed == 0.05) speed = 0;
+		speed += 0.25;
+	} 
 
-	//slow down keys
-	if(e.key == 'q') speed = 0.25;
-	if(e.key == 'w') speed = 0.5;
-	if(e.key == 'e') speed = 0.75;
+	speed = clamp(speed, 0, 6);
+
 
 	var speedlabels = document.getElementsByClassName("speedlabel");
 
