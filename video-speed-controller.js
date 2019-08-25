@@ -10,8 +10,13 @@
  * @copyright 2019 hlorand.hu
  */
 
-//Initial speed
+// Initial speed
 var speed = 1.5;
+
+// Remove focus from inputs
+if (document.activeElement) {
+	document.activeElement.blur();
+}
 
 function addEvent(element, eventName, callback) {
 	if (element.addEventListener) {
@@ -28,6 +33,9 @@ function clamp(num, min, max) {
 }
 
 addEvent(document, "keypress", function (e) {
+
+	var target = e.target || e.srcElement;
+	if ( /INPUT|TEXTAREA|SELECT|BUTTON/.test(target.nodeName) ) return;
 
 	e = e || window.event;
 
