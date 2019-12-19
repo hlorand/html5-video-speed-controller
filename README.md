@@ -1,9 +1,9 @@
 Video Speed Controller Bookmarklet
 ----------------------------------
 
-Control any HTML5 video speed with your keyboard. (and quality settings only on YouTube)
+Control any HTML5 video speed with your keyboard. (and video quality settings - only on YouTube)
 
-Usage: ASD
+Usage: **ASD**
 
 - Reset speed: `a`
 - Slow down: `s`
