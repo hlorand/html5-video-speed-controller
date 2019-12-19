@@ -1,9 +1,9 @@
 /**
  * Video Speed Controller Bookmarklet
  *
- * Control HTML5 video speed with your keyboard. Usage:
- * - Speed up: a,s,d,A,S,D keys
- * - Slow down: q,w,e keys
+ * Control any HTML5 video speed with your keyboard. Usage:
+ * - Speed control: a, s, d
+ * - Playback quality control (only on YouTube.com): q, w, e, r,  u, i, o
  *
  * @author Lorand Horvath <email at hlorand dot hu>
  * @version 0.1
