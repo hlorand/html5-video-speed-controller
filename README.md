@@ -1,7 +1,7 @@
 Video Speed Controller Bookmarklet
 ----------------------------------
 
-Control HTML5 video speed with your keyboard.
+Control any HTML5 video speed with your keyboard. (and quality settings only on YouTube)
 
 Usage: ASD
 
@@ -12,6 +12,16 @@ Usage: ASD
 With this bookmarklet, you can control videos on YouTube, Vimeo, Netflix and every other sites that use HTML5 video. It works in every popular browser like Chrome, Firefox or Safari!
 
 ![screenshot](screenshot.png)
+
+You can also control YouTube playback quality with your keyboard.
+
+- 144p: `q`
+- 240p: `w`
+- 360p: `e`
+- 480p: `r`
+- 720p: `u`
+- 1080p: `i`
+- auto: `o`
 
 Installation
 ============

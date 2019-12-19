@@ -12,6 +12,7 @@
 
 // Initial speed
 var speed = 1.5;
+var player = document.getElementById('movie_player');
 
 // Remove focus from inputs
 if (document.activeElement) {
@@ -32,6 +33,33 @@ function clamp(num, min, max) {
 	return num <= min ? min : num >= max ? max : num;
 }
 
+function YTQuality(q){
+	
+	//var quality_list = player.getAvailableQualityLevels();
+	
+	if( !player ) return false;
+	
+	switch(q){
+		case "q": player.setPlaybackQualityRange("tiny"); break;
+		case "w": player.setPlaybackQualityRange("small"); break;
+		case "e": player.setPlaybackQualityRange("medium"); break;
+		case "r": player.setPlaybackQualityRange("large"); break;
+		case "u": player.setPlaybackQualityRange("hd720"); break;
+		case "i": player.setPlaybackQualityRange("hd1080"); break;
+		case "o": player.setPlaybackQualityRange("auto"); break;
+	}
+
+	switch(player.getPlaybackQuality()){
+		case "auto": 	return "auto";
+		case "tiny": 	return "144p";
+		case "small": 	return "240p";
+		case "medium": return "360p";
+		case "large": 	return "480p";
+		case "hd720": 	return "720p";
+		case "hd1080": return "1080p";
+	}
+}
+
 addEvent(document, "keypress", function (e) {
 
 	var target = e.target || e.srcElement;
@@ -39,23 +67,29 @@ addEvent(document, "keypress", function (e) {
 
 	e = e || window.event;
 
-	//keys
+	/*** YouTube Video Quality change keyboard shortcut ***/
+	var ytq = YTQuality(e.key);
+
+	/*** HTML5 video speed change keyboard shortcuts ***/
+
+	// reset speed
 	if(e.key == 'a') speed = 1;
+	// decrease
 	if(e.key == 's') {
 		speed = speed <= 0.25 ? 0.05 : speed - 0.25;
 	}
+	// increase
 	if(e.key == 'd'){
 		if(speed == 0.05) speed = 0;
 		speed += 0.25;
-	} 
+	}
 
 	speed = clamp(speed, 0, 6);
-
 
 	var speedlabels = document.getElementsByClassName("speedlabel");
 
 	for(var i = 0; i < speedlabels.length; i++) {
-		speedlabels[i].innerHTML = speed + "x";
+		speedlabels[i].innerHTML = speed + "x" + (ytq?"<br>"+ytq:"");
 	}
 });
 
@@ -98,7 +132,9 @@ function videospeed() {
 
 			videos[i].setAttribute("speedlabel","true");
 
-			var speedlabel  = '<div class="speedlabel">' + speed + 'x</div>';
+			var ytq = YTQuality();
+
+			var speedlabel  = '<div class="speedlabel">' + speed + 'x' + (ytq?"<br>"+ytq:"") + '</div>';
 
 			videos[i].insertAdjacentHTML('beforebegin', speedlabel + style);
 		}

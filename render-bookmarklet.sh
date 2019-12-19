@@ -43,3 +43,5 @@ cat video-speed-controller.bookmarklet.js >> index.html
 echo "\">VIDEO-SPEED</a></p>" >> index.html
 
 echo "<img style='border:5px solid gray; margin-top:50px;' src='install.gif'>" >> index.html
+
+open index.html
