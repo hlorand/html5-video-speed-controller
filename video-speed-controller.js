@@ -6,12 +6,13 @@
  * - Playback quality control (only on YouTube.com): q, w, e, r,  u, i, o
  *
  * @author Lorand Horvath <email at hlorand dot hu>
- * @version 0.1
- * @copyright 2019 hlorand.hu
+ * @version 0.2
+ * @copyright 2019-2020 hlorand.hu
  */
 
 // Initial speed
 var speed = 1.5;
+var seek = 0;
 var player = document.getElementById('movie_player');
 
 // Remove focus from inputs
@@ -47,6 +48,8 @@ function YTQuality(q){
 		case "u": player.setPlaybackQualityRange("hd720"); break;
 		case "i": player.setPlaybackQualityRange("hd1080"); break;
 		case "o": player.setPlaybackQualityRange("auto"); break;
+		//case "g": player.seekTo( player.getCurrentTime() - 30 ); break;
+		//case "h": player.seekTo( player.getCurrentTime() + 30 ); break;
 	}
 
 	switch(player.getPlaybackQuality()){
@@ -67,30 +70,53 @@ addEvent(document, "keypress", function (e) {
 
 	e = e || window.event;
 
-	/*** YouTube Video Quality change keyboard shortcut ***/
+	/*** YouTube Video Quality change keyboard shortcuts ***/
 	var ytq = YTQuality(e.key);
+
 
 	/*** HTML5 video speed change keyboard shortcuts ***/
 
 	// reset speed
 	if(e.key == 'a') speed = 1;
+
 	// decrease
 	if(e.key == 's') {
 		speed = speed <= 0.25 ? 0.05 : speed - 0.25;
 	}
+
 	// increase
 	if(e.key == 'd'){
 		if(speed == 0.05) speed = 0;
 		speed += 0.25;
 	}
 
+	//clamp speed
 	speed = clamp(speed, 0, 6);
 
+	// update speed labels
 	var speedlabels = document.getElementsByClassName("speedlabel");
 
 	for(var i = 0; i < speedlabels.length; i++) {
 		speedlabels[i].innerHTML = speed + "x" + (ytq?"<br>"+ytq:"");
 	}
+
+	/*** HTML video time seek keyboard shortcuts ***/
+	if(e.key == 'g'){
+		seek = -30;
+	}
+
+        if(e.key == 'h'){
+                seek = 30;
+        }
+
+	if(e.key == 'b'){
+                seek = -1000000;
+        }
+
+        if(e.key == 'n'){
+                seek = 1000000;
+        }
+
 });
 
 // Detect new videos every 500ms
@@ -125,6 +151,15 @@ function videospeed() {
 
 			videos[i].mozPreservesPitch = videos[i].webkitPreservesPitch = videos[i].preservePitch = true;
 		}
+
+		// Seek video
+
+		if(seek != 0) {
+
+                        videos[i].currentTime += seek;
+
+			seek = 0;
+                }
 
 		// Add speed label to video
 
