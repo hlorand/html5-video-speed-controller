@@ -29,7 +29,7 @@ You can also control **YouTube playback quality** with your keyboard:
 - 360p: `e`
 - 480p: `r`
 - 720p: `u`
-- 1080p: `i`
+- 1080p: `p`
 - auto: `o`
 
 Installation
