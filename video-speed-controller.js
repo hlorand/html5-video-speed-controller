@@ -177,9 +177,16 @@ function videospeed() {
 
 			var speedlabel  = '<div class="speedlabel">' + speed + 'x' + (ytq?"<br>"+ytq:"") + '</div>';
 
-			var trustedcontent  = window.trustedTypes.defaultPolicy.createHTML(speedlabel + style);
+			const isSafari = navigator.userAgent.includes("Safari") && !navigator.userAgent.includes("Chrome");
+			const isFirefox = navigator.userAgent.includes("Firefox");
 
-			videos[i].insertAdjacentHTML('beforebegin', trustedcontent);
+			var content = speedlabel + style;
+
+			// for chrome
+			if( !isSafari && !isFirefox )
+				content  = window.trustedTypes.defaultPolicy.createHTML(speedlabel + style);
+			
+			videos[i].insertAdjacentHTML('beforebegin', content);
 		}
  	}
 }
