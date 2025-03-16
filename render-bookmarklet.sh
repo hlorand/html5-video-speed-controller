@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# npm install -g uglify-js
 uglifyjs video-speed-controller.js > video-speed-controller.min.js
 
 uriencode() {

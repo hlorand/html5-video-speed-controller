@@ -6,8 +6,8 @@
  * - Playback quality control (only on YouTube.com): q, w, e, r,  u, i, o
  *
  * @author Lorand Horvath <email at hlorand dot hu>
- * @version 0.2
- * @copyright 2019-2020 hlorand.hu
+ * @version 0.3
+ * @copyright 2019-2025 hlorand.hu
  */
 
 // Initial speed
@@ -46,7 +46,7 @@ function YTQuality(q){
 		case "e": player.setPlaybackQualityRange("medium"); break;
 		case "r": player.setPlaybackQualityRange("large"); break;
 		case "u": player.setPlaybackQualityRange("hd720"); break;
-		case "i": player.setPlaybackQualityRange("hd1080"); break;
+		case "p": player.setPlaybackQualityRange("hd1080"); break;
 		case "o": player.setPlaybackQualityRange("auto"); break;
 		//case "g": player.seekTo( player.getCurrentTime() - 30 ); break;
 		//case "h": player.seekTo( player.getCurrentTime() + 30 ); break;
@@ -119,6 +119,12 @@ addEvent(document, "keypress", function (e) {
 
 });
 
+if (window.trustedTypes && window.trustedTypes.createPolicy) {
+  window.trustedTypes.createPolicy('default', {
+    createHTML: (string) => string,
+  });
+}
+
 // Detect new videos every 500ms
 setInterval(function() { videospeed() }, 500);
 
@@ -171,7 +177,9 @@ function videospeed() {
 
 			var speedlabel  = '<div class="speedlabel">' + speed + 'x' + (ytq?"<br>"+ytq:"") + '</div>';
 
-			videos[i].insertAdjacentHTML('beforebegin', speedlabel + style);
+			var trustedcontent  = window.trustedTypes.defaultPolicy.createHTML(speedlabel + style);
+
+			videos[i].insertAdjacentHTML('beforebegin', trustedcontent);
 		}
  	}
 }
